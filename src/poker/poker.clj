@@ -192,3 +192,10 @@
 
 (def play-game (partial -play-game false))
 (def debug-game (partial -play-game true))
+
+; {1 263, 2 237}
+;Player 1: 263
+;Player 2: 237
+(defn required-output-format [m]
+  (println "Player 1:" (get m 1))
+  (println "Player 2:" (get m 2)))

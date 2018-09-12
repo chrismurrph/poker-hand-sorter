@@ -5,5 +5,5 @@
             :url "http://www.eclipse.org/legal/epl-v10.html"}
   :dependencies [[org.clojure/clojure "1.9.0-alpha14"]
                  [org.clojure/tools.namespace "0.2.11"]]
-  :main poker.core
-  :test-paths ["dev" "src" "test"])
+  :main "poker.core"
+  :source-paths ["dev" "src"])
