@@ -1,8 +1,11 @@
 (ns poker.core
-  (:gen-class))
+  (:gen-class)
+  (:require [poker.poker :as poker]))
 
 (defn -main []
   (let [lines (line-seq (java.io.BufferedReader. *in*))]
-    (doseq [ln lines]
-      (println ln))))
+    (->> lines
+         (map poker/play-game)
+         frequencies
+         poker/required-output-format)))
 
