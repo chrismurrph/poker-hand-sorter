@@ -17,7 +17,7 @@
     (poker/play-game input-2)))
 
 (defn x-3 []
-  (let [inputs (line-seq (io/reader (io/resource "input.txt")))]
+  (let [inputs (line-seq (io/reader (io/resource "test.txt")))]
     (->> inputs
          (map poker/play-game)
          frequencies

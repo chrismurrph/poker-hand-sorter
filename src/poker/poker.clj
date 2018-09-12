@@ -14,7 +14,6 @@
   (fn [hand]
     (->> hand
          (map (comp str first))
-         dev/probe-off
          (some #(= % card)))))
 (def has-ten? (has-value-hof "T"))
 (def has-jack? (has-value-hof "J"))
@@ -87,11 +86,9 @@
     [9 (highest-card-value hand)]))
 
 (defn value-with-frequency [freq hand]
-  (dev/log-off "looking freq" freq)
   (some->> hand
            (map (comp str first))
            frequencies
-           dev/probe-off
            (filter (fn [[k v]] (= v freq)))
            ffirst
            value->ordinal
@@ -165,10 +162,9 @@
                         (partition 2)
                         (map (partial apply -))
                         (drop-while zero?)
-                        dev/probe-off
                         first)]
-    (dev/log-off "first-diff" first-diff)
     (cond
+      (nil? first-diff) 3
       (pos? first-diff) 1
       (neg? first-diff) 2
       :else 3
@@ -198,4 +194,8 @@
 ;Player 2: 237
 (defn required-output-format [m]
   (println "Player 1:" (get m 1))
-  (println "Player 2:" (get m 2)))
+  (println "Player 2:" (get m 2))
+  (let [unresolved-games (get m 3)]
+    (when unresolved-games
+      (println "")
+      (println "There are" unresolved-games "games that are draws, hence this extra output!"))))
