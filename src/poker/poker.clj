@@ -91,8 +91,7 @@
            frequencies
            (filter (fn [[k v]] (= v freq)))
            ffirst
-           value->ordinal
-           ))
+           value->ordinal))
 
 (defn two-kind-with-frequency [freq hand]
   (->> hand
@@ -102,8 +101,7 @@
        (take 2)
        (map first)
        (map value->ordinal)
-       (sort-by -)
-       ))
+       (sort-by -)))
 
 (defn four-of-a-kind [hand]
   (when (= [4 1] (same-value hand))
@@ -135,8 +133,7 @@
 (defn two-pairs [hand]
   (when (= [2 2 1] (same-value hand))
     (conj (into [3] (two-kind-with-frequency 2 hand))
-          (value-with-frequency 1 hand))
-    ))
+          (value-with-frequency 1 hand))))
 
 (defn pair [hand]
   (when (= [2 1 1 1] (same-value hand))
