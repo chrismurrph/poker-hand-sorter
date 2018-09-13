@@ -38,5 +38,8 @@
 (defn x-10 []
   (poker/two-kind-with-frequency 2 ["3C" "3C" "2C" "9C" "9S"]))
 
-(defn x11 []
-  (poker/winner [1 14 7 6 5 4] [2 2 7 2 2]))
+(defn x-11 []
+  [[(poker/-winner-1 [1 14 7 6 5 4] [2 2 7 2 2])
+    (poker/-winner-2 [1 14 7 6 5 4] [2 2 7 2 2])]
+   [(poker/-winner-1 [2 2 7 2 2] [1 14 7 6 5 4])
+    (poker/-winner-2 [2 2 7 2 2] [1 14 7 6 5 4])]])

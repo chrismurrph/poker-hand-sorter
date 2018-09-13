@@ -154,7 +154,7 @@
         res
         (recur (inc idx))))))
 
-(defn winner [res-1 res-2]
+(defn -winner-1 [res-1 res-2]
   (let [first-diff (->> (interleave res-1 res-2)
                         (partition 2)
                         (map (partial apply -))
@@ -166,6 +166,14 @@
       (neg? first-diff) 2
       :else 3
       )))
+
+;; Gives a slightly incorrect answer:
+;; Player 1: 260
+;; Player 2: 240
+(def -winner-2 (comp (or {1  2
+                         -1 1} 3) compare))
+
+(def winner -winner-1)
 
 (defn -play-game [dbg? line]
   (let [line (str/split line #" ")
