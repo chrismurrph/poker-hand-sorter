@@ -72,7 +72,7 @@
        first))
 
 (defn royal-flush [hand]
-  (when (and (= [5 1] (same-suit hand))
+  (when (and (= [5] (same-suit hand))
              (has-ten? hand)
              (has-jack? hand)
              (has-queen? hand)
@@ -171,7 +171,7 @@
 ;; Player 1: 260
 ;; Player 2: 240
 (def -winner-2 (comp (or {1  2
-                         -1 1} 3) compare))
+                          -1 1} 3) compare))
 
 (def winner -winner-1)
 
