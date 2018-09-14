@@ -28,15 +28,15 @@
 ;; Thus two pair would return [2 2 1]
 ;; selector determines whether the frequencies are for the card value or the card suit.
 ;;
-(defn descending-frequencies [selector]
+(defn descending-frequencies-hof [selector]
   (fn [hand]
     (->> hand
          (map (comp str selector))
          frequencies
          vals
          (sort-by -))))
-(def same-suit (descending-frequencies second))
-(def same-value (descending-frequencies first))
+(def same-suit (descending-frequencies-hof second))
+(def same-value (descending-frequencies-hof first))
 
 (def picture-value->ordinal
   {"A" 14
@@ -71,7 +71,7 @@
        card-values-descending
        first))
 
-(defn royal-flush [hand]
+(defn royal-flush-1 [hand]
   (when (and (= [5] (same-suit hand))
              (has-ten? hand)
              (has-jack? hand)
@@ -79,6 +79,13 @@
              (has-king? hand)
              (has-ace? hand))
     [10]))
+
+(defn royal-flush-2 [hand]
+  (when (and (= [5] (same-suit hand))
+             (= [14 13 12 11 10] (card-values-descending hand)))
+    [10]))
+
+(def royal-flush royal-flush-2)
 
 (defn straight-flush [hand]
   (when (and (= [5] (same-suit hand))
